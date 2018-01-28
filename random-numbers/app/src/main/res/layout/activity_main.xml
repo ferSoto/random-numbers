@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.DrawerLayout
+    android:id="@+id/drawerLayout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,31 +10,31 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="#FFF">
+        android:orientation="vertical">
         <LinearLayout
             android:id="@+id/titleBar"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:orientation="horizontal"
-            android:background="#aaa"
-            android:gravity="center_vertical">
+            android:background="@color/colorTitleBar"
+            android:gravity="center_vertical"
+            android:elevation="4dp">
             <ImageButton
                 android:id="@+id/titleBarButton"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="#f00"
+                android:onClick="onTitleBarButtonClick"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
-                android:layout_marginLeft="4dp"
+                android:layout_marginStart="4dp"
                 android:textSize="24sp"
                 android:textColor="#000"
                 android:fontFamily="sans-serif"
                 android:gravity="center_vertical"
-                android:text="Random numbers"/>
-
+                android:text="@string/app_name"/>
         </LinearLayout>
 
         <fragment
@@ -46,15 +47,25 @@
     </LinearLayout>
     <LinearLayout
         android:id="@+id/menuLayout"
-        android:layout_width="240dp"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_gravity="start">
+        android:layout_gravity="start"
+        android:orientation="vertical"
+        android:background="@color/colorMenuDrawerBg">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:gravity="center_vertical"
+            android:textColor="#000"
+            android:textSize="24sp"
+            android:fontFamily="sans-serif"
+            android:text="@string/menu_title"
+            />
         <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#F00">
-
-        </ListView>
+            android:background="#F00"/>
     </LinearLayout>
 
 </android.support.v4.widget.DrawerLayout>

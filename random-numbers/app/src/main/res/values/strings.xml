@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Random Numbers</string>
+    <string name="menu_title">Configuración</string>
 </resources>
