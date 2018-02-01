@@ -2,9 +2,7 @@ package com.zomaotoko.randomnumbers
 
 import java.util.concurrent.ThreadLocalRandom
 
-/**
- * Created by ferso on 1/31/2018.
- */
+
 class RandomDouble(lowerBound: Double, upperBound: Double, digits: Int) : RandomNumber<Double> {
     val lowerBound = lowerBound
     val upperBound = upperBound
