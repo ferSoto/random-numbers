@@ -19,10 +19,12 @@ class GenerateNumberFragment : Fragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        generateNumberBtn.setOnClickListener { showText("Number") }
+        generateNumberBtn.setOnClickListener {
+            // TODO: show number
+        }
     }
 
-    private fun showText(text: String) {
+    private fun showNumber(text: String) {
         if (isAdded) activity.runOnUiThread({ numberTxt.text = text })
     }
 }
