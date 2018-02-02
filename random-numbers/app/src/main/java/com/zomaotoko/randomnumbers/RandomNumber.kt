@@ -1,7 +1,7 @@
 package com.zomaotoko.randomnumbers
 
 
-interface RandomNumber<T> {
-    fun getRandomNumber() : T
+interface RandomNumber {
+    fun getRandomNumber() : Any
     fun getRandomNumberString() : String
 }
