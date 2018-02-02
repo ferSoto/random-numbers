@@ -6,12 +6,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import kotlinx.android.synthetic.main.fragment_generate_number.*
 
 
 class GenerateNumberFragment : Fragment() {
-    private var randomNumber: RandomNumber? = null
+    private var generator: Generator? = null
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater?.inflate(R.layout.fragment_generate_number, container, false)
@@ -21,7 +20,7 @@ class GenerateNumberFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         generateNumberBtn.setOnClickListener {
-            showNumber(randomNumber?.getRandomNumberString())
+            showNumber(generator?.getRandomNumberString())
         }
     }
 

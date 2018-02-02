@@ -3,7 +3,7 @@ package com.zomaotoko.randomnumbers
 import java.util.concurrent.ThreadLocalRandom
 
 
-class RandomInt(lowerBound: Int, upperBound: Int) : RandomNumber {
+class IntGenerator(lowerBound: Int, upperBound: Int) : Generator {
     val lowerBound = lowerBound
     val upperBound = upperBound
 
