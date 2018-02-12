@@ -18,6 +18,9 @@ class MainActivity : Activity() {
 
         // Menu layout must be 48 dp smaller than screen width
         setMenuLayoutWidth(getScreenWidthInDp() - dpToPx(48F))
+        this.menuOptionNumberType.setOnClickListener {
+            // do stuffs
+        }
     }
 
     fun onTitleBarButtonClick(view: View) {
