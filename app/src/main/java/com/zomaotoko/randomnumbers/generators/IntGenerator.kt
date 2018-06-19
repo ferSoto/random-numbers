@@ -1,5 +1,6 @@
-package com.zomaotoko.randomnumbers
+package com.zomaotoko.randomnumbers.generators
 
+import com.zomaotoko.randomnumbers.generators.Generator
 import java.util.concurrent.ThreadLocalRandom
 
 
