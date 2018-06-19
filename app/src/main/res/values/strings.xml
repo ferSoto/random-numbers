@@ -1,8 +1,11 @@
 <resources>
-    <string name="app_name">Random Numbers</string>
-    <string name="menu_title">Configuración</string>
-    <string name="menu_number_type">Tipo de número</string>
+    <string name="app_name">RanGen</string>
+    <string name="menu_title">Configuration</string>
 
     <string name="label_integer">Integer</string>
     <string name="label_float">Float</string>
+
+    <string-array name="menu_labels">
+        <item>Number configuration</item>
+    </string-array>
 </resources>

@@ -8,6 +8,13 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- Menu Items -->
+    <style name="MenuItem">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
     <!-- Configuration's radio buttons -->
     <style name="RadioButtons">
         <item name="android:gravity">center_vertical</item>

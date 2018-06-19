@@ -27,9 +27,9 @@ class MainActivity : FragmentActivity(), ConfigurationFragment.TypeSelector {
 
         // Menu layout must be 48 dp smaller than screen width
         setMenuLayoutWidth(screenWidthInDp - dpToPx(48F))
-        this.menuOptionNumberType.setOnClickListener {
-            showConfigurationFragment()
-        }
+        //this.menuOptionNumberType.setOnClickListener {
+        //    showConfigurationFragment()
+        //}
     }
 
     private fun inflateLayout() {

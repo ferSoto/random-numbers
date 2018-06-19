@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <array name="menu_icons">
+        <item>@drawable/ic_settings</item>
+    </array>
+    
+</resources>
