@@ -9,16 +9,22 @@
     <RadioGroup
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
 
         <RadioButton
             android:id="@+id/integerBtn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            style="@style/RadioButtons"
+            android:text="@string/label_integer" />
 
         <RadioButton
             android:id="@+id/doubleBtn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            style="@style/RadioButtons"
+            android:text="@string/label_float" />
     </RadioGroup>
 </android.support.constraint.ConstraintLayout>

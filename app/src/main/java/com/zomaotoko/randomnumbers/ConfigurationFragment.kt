@@ -10,9 +10,12 @@ import kotlinx.android.synthetic.main.fragment_configuration.*
 
 
 class ConfigurationFragment : Fragment() {
-    enum class NumberType { INTEGER, FLOAT }
+    interface TypeSelector {
+        fun onTypeSelected(type: NumberType)
+    }
 
     private lateinit var type: NumberType
+    var listener: TypeSelector? = null
 
     companion object {
         private const val TYPE_KEY = "number_type"
@@ -38,5 +41,42 @@ class ConfigurationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         if (type == NumberType.INTEGER) integerBtn.isChecked = true
         else doubleBtn.isChecked = true
+        setButtonsListeners()
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        listener = null
+    }
+
+    private fun setButtonsListeners() {
+        integerBtn.setOnClickListener { setNumberType(NumberType.INTEGER) }
+        doubleBtn.setOnClickListener { setNumberType(NumberType.DOUBLE) }
+    }
+
+    private fun setNumberType(type: NumberType) {
+        this.type = type
+        listener?.onTypeSelected(this.type)
+    }
+
+    // Listener
+}
+
+enum class NumberType {
+    INTEGER, DOUBLE;
+
+    val value: Int
+        get() = when(this) {
+            INTEGER -> 0
+            DOUBLE -> 1
+            else -> -1
+        }
+
+    companion object {
+        fun fromValue(value: Int) = when(value) {
+            0 -> INTEGER
+            1 -> DOUBLE
+            else -> throw Exception()
+        }
     }
 }

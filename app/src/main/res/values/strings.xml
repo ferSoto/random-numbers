@@ -2,4 +2,7 @@
     <string name="app_name">Random Numbers</string>
     <string name="menu_title">Configuración</string>
     <string name="menu_number_type">Tipo de número</string>
+
+    <string name="label_integer">Integer</string>
+    <string name="label_float">Float</string>
 </resources>

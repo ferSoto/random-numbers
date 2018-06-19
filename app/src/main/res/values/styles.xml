@@ -8,4 +8,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- Configuration's radio buttons -->
+    <style name="RadioButtons">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">26sp</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
 </resources>
