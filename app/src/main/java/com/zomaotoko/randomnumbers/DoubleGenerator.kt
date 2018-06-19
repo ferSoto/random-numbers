@@ -3,16 +3,9 @@ package com.zomaotoko.randomnumbers
 import java.util.concurrent.ThreadLocalRandom
 
 
-class DoubleGenerator(lowerBound: Double, upperBound: Double, digits: Int) : Generator {
-    val lowerBound = lowerBound
-    val upperBound = upperBound
-    val digits = digits
+class DoubleGenerator(private val lowerBound: Double, private val upperBound: Double, private val digits: Int) : Generator {
 
-    override fun getRandomNumber(): Double {
-        return ThreadLocalRandom.current().nextDouble(lowerBound, upperBound)
-    }
+    override fun getRandomNumber() = ThreadLocalRandom.current().nextDouble(lowerBound, upperBound)
 
-    override fun getRandomNumberString(): String {
-        return String.format("%.${digits}f", getRandomNumber())
-    }
+    override fun getRandomNumberString() = String.format("%.${digits}f", getRandomNumber())
 }

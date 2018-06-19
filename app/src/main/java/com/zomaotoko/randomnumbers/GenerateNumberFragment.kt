@@ -25,6 +25,6 @@ class GenerateNumberFragment : Fragment() {
     }
 
     private fun showNumber(text: String?) {
-        if (isAdded && text != null) activity.runOnUiThread({ numberTxt.text = text })
+        if (isAdded && text != null) activity.runOnUiThread { numberTxt.text = text }
     }
 }
