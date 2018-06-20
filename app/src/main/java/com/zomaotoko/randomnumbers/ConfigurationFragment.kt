@@ -1,6 +1,8 @@
 package com.zomaotoko.randomnumbers
 
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -20,6 +22,8 @@ class ConfigurationFragment : Fragment() {
 
     companion object {
         private const val TYPE_KEY = "number_type"
+        private const val ANIMATION_DURATION = 240L
+        private const val OUT_OF_SCREEN_POSITION = 1280F
 
         fun getInstance(type: NumberType) = ConfigurationFragment().apply {
             arguments = Bundle().apply {
@@ -44,9 +48,9 @@ class ConfigurationFragment : Fragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         when(type) {
-            NumberType.INTEGER -> integerBtn.isChecked = true
-            NumberType.DOUBLE -> doubleBtn.isChecked = true
-            NumberType.BINARY -> binaryBtn.isChecked = true
+            NumberType.INTEGER -> checkInteger()
+            NumberType.DOUBLE -> checkDouble()
+            NumberType.BINARY -> checkBinary()
         }
         setButtonsListeners()
     }
@@ -54,6 +58,22 @@ class ConfigurationFragment : Fragment() {
     override fun onDetach() {
         super.onDetach()
         listener = null
+    }
+
+
+    //
+
+    private fun checkInteger() {
+        integerBtn.isChecked = true
+    }
+
+    private fun checkDouble() {
+        doubleBtn.isChecked = true
+    }
+
+    private fun checkBinary() {
+        binaryBtn.isChecked = true
+        boundariesConfig.visibility = View.GONE
     }
 
     private fun setButtonsListeners() {
@@ -74,11 +94,37 @@ class ConfigurationFragment : Fragment() {
         }
     }
 
+
+    // Animation
+
     private fun showBoundariesConfig() {
+        if (boundariesConfig.visibility == View.VISIBLE) return
+
+        // Show boundaries configuration's layout sliding in from right
         boundariesConfig.visibility = View.VISIBLE
+        slide(boundariesConfig, OUT_OF_SCREEN_POSITION, 0f) {
+            boundariesConfig.visibility = View.VISIBLE
+        }
     }
 
     private fun hideBoundariesConfig() {
-        boundariesConfig.visibility = View.GONE
+        if (boundariesConfig.visibility == View.GONE) return
+
+        // Show boundaries configuration's layout sliding out to left
+        slide(boundariesConfig, 0f, -OUT_OF_SCREEN_POSITION) {
+            boundariesConfig.visibility = View.GONE
+        }
+    }
+
+    private fun slide(view: View, from: Float, to: Float, after: (() -> Unit)) {
+        view.translationX = from
+        view.animate()
+                .setDuration(ANIMATION_DURATION)
+                .translationX(to)
+                .setListener(object : AnimatorListenerAdapter() {
+                    override fun onAnimationEnd(animation: Animator?) {
+                        after()
+                    }
+                }).start()
     }
 }
