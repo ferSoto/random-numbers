@@ -26,5 +26,12 @@
             android:layout_height="wrap_content"
             style="@style/RadioButtons"
             android:text="@string/label_float" />
+
+        <RadioButton
+            android:id="@+id/binaryBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/RadioButtons"
+            android:text="@string/label_binary"/>
     </RadioGroup>
 </android.support.constraint.ConstraintLayout>

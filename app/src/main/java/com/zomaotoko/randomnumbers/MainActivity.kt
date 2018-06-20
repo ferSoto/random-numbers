@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 import com.zomaotoko.randomnumbers.Utils.Companion.dpToPx
 import com.zomaotoko.randomnumbers.drawermenu.MenuAdapter
+import com.zomaotoko.randomnumbers.generators.NumberType
 
 
 class MainActivity : FragmentActivity(), ConfigurationFragment.TypeSelector, MenuAdapter.MenuListener {

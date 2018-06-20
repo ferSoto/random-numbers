@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.zomaotoko.randomnumbers.generators.NumberType
 import kotlinx.android.synthetic.main.fragment_configuration.*
 
 
@@ -52,6 +53,7 @@ class ConfigurationFragment : Fragment() {
     private fun setButtonsListeners() {
         integerBtn.setOnClickListener { setNumberType(NumberType.INTEGER) }
         doubleBtn.setOnClickListener { setNumberType(NumberType.DOUBLE) }
+        binaryBtn.setOnClickListener { setNumberType(NumberType.BINARY) }
     }
 
     private fun setNumberType(type: NumberType) {
@@ -60,23 +62,4 @@ class ConfigurationFragment : Fragment() {
     }
 
     // Listener
-}
-
-enum class NumberType {
-    INTEGER, DOUBLE;
-
-    val value: Int
-        get() = when(this) {
-            INTEGER -> 0
-            DOUBLE -> 1
-            else -> -1
-        }
-
-    companion object {
-        fun fromValue(value: Int) = when(value) {
-            0 -> INTEGER
-            1 -> DOUBLE
-            else -> throw Exception()
-        }
-    }
 }

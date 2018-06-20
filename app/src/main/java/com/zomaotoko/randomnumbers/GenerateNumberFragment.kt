@@ -6,9 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.zomaotoko.randomnumbers.generators.DoubleGenerator
-import com.zomaotoko.randomnumbers.generators.Generator
-import com.zomaotoko.randomnumbers.generators.IntGenerator
+import com.zomaotoko.randomnumbers.generators.*
 import kotlinx.android.synthetic.main.fragment_generate_number.*
 
 
@@ -28,10 +26,11 @@ class GenerateNumberFragment : Fragment() {
     }
 
     fun setNumberType(type: NumberType) {
-        generator = if (type == NumberType.INTEGER)
-            IntGenerator(0, 100)
-        else
-            DoubleGenerator(0.0, 100.0, 2)
+        generator = when(type) {
+            NumberType.INTEGER -> IntGenerator(0, 100)
+            NumberType.DOUBLE -> DoubleGenerator(0.0, 100.0, 2)
+            else -> BinaryGenerator()
+        }
     }
 
     private fun showNumber(text: String?) {
