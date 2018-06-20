@@ -34,14 +34,20 @@ class ConfigurationFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        super.onCreateView(inflater, container, savedInstanceState)
-        return inflater?.inflate(R.layout.fragment_configuration, container, false)!!
+        return inflater?.inflate(R.layout.fragment_configuration, container, false)!!.apply {
+            setOnClickListener {
+                // Intercept taps
+            }
+        }
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (type == NumberType.INTEGER) integerBtn.isChecked = true
-        else doubleBtn.isChecked = true
+        when(type) {
+            NumberType.INTEGER -> integerBtn.isChecked = true
+            NumberType.DOUBLE -> doubleBtn.isChecked = true
+            NumberType.BINARY -> binaryBtn.isChecked = true
+        }
         setButtonsListeners()
     }
 

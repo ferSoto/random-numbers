@@ -33,6 +33,14 @@ class MainActivity : FragmentActivity(), ConfigurationFragment.TypeSelector, Men
         setMenuLayoutWidth(screenWidthInDp - dpToPx(48F))
     }
 
+    override fun onBackPressed() {
+        if (drawerLayout.isDrawerOpen(menuLayout)) {
+            onCloseDrawer(null)
+        } else {
+            super.onBackPressed()
+        }
+    }
+
     private fun inflateLayout() {
         generatorFragment = fragmentManager.findFragmentById(R.id.fragment_generate_number) as GenerateNumberFragment
     }

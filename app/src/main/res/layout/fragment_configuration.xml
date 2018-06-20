@@ -1,37 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorFragmentBg"
-    android:padding="8dp">
+    android:background="@color/colorFragmentBg">
 
-    <RadioGroup
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:gravity="center_vertical"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:gravity="center"
+        android:background="@android:color/white"
+        android:elevation="2dp">
 
-        <RadioButton
-            android:id="@+id/integerBtn"
-            android:layout_width="match_parent"
+        <RadioGroup
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            style="@style/RadioButtons"
-            android:text="@string/label_integer" />
+            android:padding="12dp"
+            android:background="@drawable/stroke_radio_group">
 
-        <RadioButton
-            android:id="@+id/doubleBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/RadioButtons"
-            android:text="@string/label_float" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                style="@style/RadioGroupTitleTxt"
+                android:text="@string/label_number_type_title"/>
 
-        <RadioButton
-            android:id="@+id/binaryBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/RadioButtons"
-            android:text="@string/label_binary"/>
-    </RadioGroup>
-</android.support.constraint.ConstraintLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorIcon"/>
+
+            <RadioButton
+                android:id="@+id/integerBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/RadioButtonsTxt"
+                android:text="@string/label_integer" />
+
+            <RadioButton
+                android:id="@+id/doubleBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/RadioButtonsTxt"
+                android:text="@string/label_float" />
+
+            <RadioButton
+                android:id="@+id/binaryBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/RadioButtonsTxt"
+                android:text="@string/label_binary"/>
+        </RadioGroup>
+    </LinearLayout>
+</LinearLayout>

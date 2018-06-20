@@ -15,10 +15,17 @@
         <item name="android:textColor">@android:color/black</item>
     </style>
 
+    <!-- Radio group title text view -->
+    <style name="RadioGroupTitleTxt">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/colorRadioGroupTitle</item>
+    </style>
+
     <!-- Configuration's radio buttons -->
-    <style name="RadioButtons">
+    <style name="RadioButtonsTxt">
         <item name="android:gravity">center_vertical</item>
-        <item name="android:textSize">26sp</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:textColor">@android:color/black</item>
     </style>
 

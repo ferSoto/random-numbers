@@ -2,6 +2,7 @@
     <string name="app_name">RanGen</string>
     <string name="menu_title">Configuration</string>
 
+    <string name="label_number_type_title">Number Type</string>
     <string name="label_integer">Integer</string>
     <string name="label_float">Float</string>
     <string name="label_binary">Binary</string>
