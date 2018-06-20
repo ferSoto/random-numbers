@@ -45,7 +45,7 @@ class MainActivity : FragmentActivity(), ConfigurationFragment.TypeSelector, Men
     }
 
     private fun showConfigurationFragment() {
-        val fragment = ConfigurationFragment.getInstance(NumberType.INTEGER)
+        val fragment = ConfigurationFragment.getInstance(numberType)
         fragment.listener = this
         addFragmentAnimated(fragment, CONFIGURATION_TAG)
         drawerLayout.closeDrawer(menuLayout)
