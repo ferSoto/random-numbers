@@ -3,6 +3,7 @@ package com.zomaotoko.randomnumbers
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
+import android.support.v4.app.FragmentManager
 import android.util.DisplayMetrics
 import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
@@ -87,6 +88,14 @@ class MainActivity : FragmentActivity(), ConfigurationFragment.TypeSelector, Men
 
 
     //
+
+    override fun onHomeClick() {
+        if (supportFragmentManager.backStackEntryCount > 0) {
+            // Remove all fragments, recursively
+            supportFragmentManager.popBackStackImmediate()
+        }
+        onCloseDrawer(null)
+    }
 
     override fun onConfigurationClick() {
         if (supportFragmentManager.findFragmentByTag(CONFIGURATION_TAG) == null) {

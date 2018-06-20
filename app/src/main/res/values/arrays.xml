@@ -2,6 +2,7 @@
 <resources>
     
     <array name="menu_icons">
+        <item>@drawable/ic_home</item>
         <item>@drawable/ic_settings</item>
     </array>
     

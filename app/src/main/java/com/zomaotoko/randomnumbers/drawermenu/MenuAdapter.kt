@@ -8,6 +8,7 @@ import android.view.ViewGroup
 class MenuAdapter(private val context: FragmentActivity, optionsListRes: Int, iconsListRes: Int) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     class ViewHolder(var view: MenuItem) : RecyclerView.ViewHolder(view)
     interface MenuListener {
+        fun onHomeClick()
         fun onConfigurationClick()
     }
 
@@ -31,7 +32,8 @@ class MenuAdapter(private val context: FragmentActivity, optionsListRes: Int, ic
     private fun addListener(view: MenuItem, position: Int) {
         if (context is MenuListener) {
             when(position) {
-                0 -> view.setOnClickListener { context.onConfigurationClick() }
+                0 -> view.setOnClickListener { context.onHomeClick() }
+                1 -> view.setOnClickListener { context.onConfigurationClick() }
             }
         }
     }
