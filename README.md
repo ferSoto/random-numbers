@@ -6,6 +6,7 @@ Following an uniform distribution:
 
 * Integer number between 0 and 100, exclusive.
 * Double number between 0.0 and 100.0, exclusive.
+* Binary number
 
 ## Future work
 
