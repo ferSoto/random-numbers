@@ -1,6 +1,7 @@
 package com.zomaotoko.randomnumbers.drawermenu
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
@@ -23,10 +24,10 @@ class MenuItem : LinearLayout {
             itemLabel.text = value
         }
 
-    var icon: Int = 0
-        set(resource) {
-            field = resource
-            itemIcon.setImageResource(resource)
+    var icon: Drawable? = null
+        set(drawable) {
+            field = drawable
+            itemIcon.setImageDrawable(drawable)
         }
 
     // Constructors (all empty)

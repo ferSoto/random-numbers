@@ -8,15 +8,18 @@ import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 
 import com.zomaotoko.randomnumbers.Utils.Companion.dpToPx
+import com.zomaotoko.randomnumbers.drawermenu.MenuAdapter
 
 
-class MainActivity : FragmentActivity(), ConfigurationFragment.TypeSelector {
+class MainActivity : FragmentActivity(), ConfigurationFragment.TypeSelector, MenuAdapter.MenuListener {
     private lateinit var numberType: NumberType
     private lateinit var generatorFragment: GenerateNumberFragment
 
     companion object {
         private const val PREFERENCES_KEY = "preferences"
         private const val NUMBER_TYPE = "number_type"
+
+        private const val CONFIGURATION_TAG = "configuration_fragment"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,9 +30,6 @@ class MainActivity : FragmentActivity(), ConfigurationFragment.TypeSelector {
 
         // Menu layout must be 48 dp smaller than screen width
         setMenuLayoutWidth(screenWidthInDp - dpToPx(48F))
-        //this.menuOptionNumberType.setOnClickListener {
-        //    showConfigurationFragment()
-        //}
     }
 
     private fun inflateLayout() {
@@ -47,18 +47,18 @@ class MainActivity : FragmentActivity(), ConfigurationFragment.TypeSelector {
     private fun showConfigurationFragment() {
         val fragment = ConfigurationFragment.getInstance(NumberType.INTEGER)
         fragment.listener = this
-        addFragmentAnimated(fragment)
+        addFragmentAnimated(fragment, CONFIGURATION_TAG)
         drawerLayout.closeDrawer(menuLayout)
     }
 
 
     // Fragments
 
-    private fun addFragmentAnimated(fragment: Fragment) {
+    private fun addFragmentAnimated(fragment: Fragment, tag: String) {
         supportFragmentManager.beginTransaction()
                 .setCustomAnimations(R.animator.slide_in_animator, R.animator.slide_out_animator,
                         R.animator.slide_in_animator, R.animator.slide_out_animator)
-                .add(R.id.container_fragment, fragment)
+                .add(R.id.container_fragment, fragment, tag)
                 .addToBackStack(null)
                 .commit()
     }
@@ -74,6 +74,15 @@ class MainActivity : FragmentActivity(), ConfigurationFragment.TypeSelector {
             apply()
         }
         generatorFragment.setNumberType(numberType)
+    }
+
+
+    //
+
+    override fun onConfigurationClick() {
+        if (supportFragmentManager.findFragmentByTag(CONFIGURATION_TAG) == null) {
+            showConfigurationFragment()
+        }
     }
 
 

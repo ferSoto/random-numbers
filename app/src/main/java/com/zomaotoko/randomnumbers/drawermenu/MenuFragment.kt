@@ -19,7 +19,7 @@ class MenuFragment : Fragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = MenuAdapter(context, R.array.menu_labels, R.array.menu_icons)
+        adapter = MenuAdapter(activity, R.array.menu_labels, R.array.menu_icons)
         recyclerView.let {
             it.setHasFixedSize(true)
             it.adapter = adapter
