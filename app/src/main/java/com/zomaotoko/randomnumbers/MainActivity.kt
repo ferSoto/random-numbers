@@ -48,7 +48,7 @@ class MainActivity : FragmentActivity(), ConfigurationFragment.TypeSelector, Men
         val fragment = ConfigurationFragment.getInstance(numberType)
         fragment.listener = this
         addFragmentAnimated(fragment, CONFIGURATION_TAG)
-        drawerLayout.closeDrawer(menuLayout)
+        onCloseDrawer(null)
     }
 
 
@@ -90,6 +90,10 @@ class MainActivity : FragmentActivity(), ConfigurationFragment.TypeSelector, Men
 
     fun onTitleBarButtonClick(view: View) {
         drawerLayout.openDrawer(menuLayout)
+    }
+
+    fun onCloseDrawer(view: View?) {
+        drawerLayout.closeDrawer(menuLayout)
     }
 
 
