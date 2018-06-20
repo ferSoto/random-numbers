@@ -34,7 +34,7 @@ class ConfigurationFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater?.inflate(R.layout.fragment_configuration, container, false)!!.apply {
+        return inflater?.inflate(R.layout.fragment_configuration, container, false)?.apply {
             setOnClickListener {
                 // Intercept taps
             }
@@ -65,7 +65,20 @@ class ConfigurationFragment : Fragment() {
     private fun setNumberType(type: NumberType) {
         this.type = type
         listener?.onTypeSelected(this.type)
+
+        // Binary type of number does not need boundaries
+        if (type == NumberType.BINARY) {
+            hideBoundariesConfig()
+        } else {
+            showBoundariesConfig()
+        }
     }
 
-    // Listener
+    private fun showBoundariesConfig() {
+        boundariesConfig.visibility = View.VISIBLE
+    }
+
+    private fun hideBoundariesConfig() {
+        boundariesConfig.visibility = View.GONE
+    }
 }

@@ -91,7 +91,7 @@ class MainActivity : FragmentActivity(), ConfigurationFragment.TypeSelector, Men
 
     override fun onHomeClick() {
         if (supportFragmentManager.backStackEntryCount > 0) {
-            // Remove all fragments, recursively
+            // Remove visible fragment if it's not the main fragment
             supportFragmentManager.popBackStackImmediate()
         }
         onCloseDrawer(null)

@@ -15,14 +15,24 @@
         <item name="android:textColor">@android:color/black</item>
     </style>
 
+    <!-- Background layout for configuration options -->
+    <style name="ConfigLayout">
+        <item name="android:background">@android:color/white</item>
+        <item name="android:layout_marginTop">24dp</item>
+        <item name="android:paddingTop">15dp</item>
+        <item name="android:paddingBottom">15dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:elevation">2dp</item>
+    </style>
+
     <!-- Radio group title text view -->
-    <style name="RadioGroupTitleTxt">
+    <style name="ConfigGroupTitleTxt">
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/colorRadioGroupTitle</item>
     </style>
 
     <!-- Configuration's radio buttons -->
-    <style name="RadioButtonsTxt">
+    <style name="InnerConfigTxt">
         <item name="android:gravity">center_vertical</item>
         <item name="android:layout_gravity">center_vertical</item>
         <item name="android:textSize">18sp</item>
