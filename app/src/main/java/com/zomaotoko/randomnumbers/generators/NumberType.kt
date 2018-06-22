@@ -1,12 +1,12 @@
 package com.zomaotoko.randomnumbers.generators
 
 enum class NumberType {
-    INTEGER, DOUBLE, BINARY;
+    INTEGER, DECIMAL, BINARY;
 
     val value: Int
         get() = when(this) {
             INTEGER -> 0
-            DOUBLE -> 1
+            DECIMAL -> 1
             BINARY -> 2
             else -> -1
         }
@@ -14,7 +14,7 @@ enum class NumberType {
     companion object {
         fun fromValue(value: Int) = when(value) {
             0 -> INTEGER
-            1 -> DOUBLE
+            1 -> DECIMAL
             2 -> BINARY
             else -> throw Exception()
         }

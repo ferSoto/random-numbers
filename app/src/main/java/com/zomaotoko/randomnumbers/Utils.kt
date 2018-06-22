@@ -1,5 +1,6 @@
 package com.zomaotoko.randomnumbers
 
+
 import android.content.res.Resources
 import android.util.DisplayMetrics
 

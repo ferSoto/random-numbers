@@ -5,6 +5,7 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,11 +18,11 @@ class ConfigurationFragment : Fragment() {
         fun onTypeSelected(type: NumberType)
     }
 
-    private lateinit var type: NumberType
-    var listener: TypeSelector? = null
-
     companion object {
         private const val TYPE_KEY = "number_type"
+        private const val LOWER_BOUND_KEY = "lower_bound"
+        private const val UPPER_BOUND_KEY = "upper_bound"
+
         private const val ANIMATION_DURATION = 240L
         private const val OUT_OF_SCREEN_POSITION = 1280F
 
@@ -32,9 +33,16 @@ class ConfigurationFragment : Fragment() {
         }
     }
 
+    private lateinit var type: NumberType
+    private var lowerBound: Double = 0.0
+    private var upperBound: Double = 100.0
+    var listener: TypeSelector? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         type = arguments[TYPE_KEY] as NumberType
+        lowerBound = arguments.getDouble(LOWER_BOUND_KEY, lowerBound)
+        upperBound = arguments.getDouble(UPPER_BOUND_KEY, upperBound)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -49,7 +57,7 @@ class ConfigurationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         when(type) {
             NumberType.INTEGER -> checkInteger()
-            NumberType.DOUBLE -> checkDouble()
+            NumberType.DECIMAL -> checkDouble()
             NumberType.BINARY -> checkBinary()
         }
         setButtonsListeners()
@@ -65,10 +73,12 @@ class ConfigurationFragment : Fragment() {
 
     private fun checkInteger() {
         integerBtn.isChecked = true
+        configureInputs()
     }
 
     private fun checkDouble() {
         doubleBtn.isChecked = true
+        configureInputs()
     }
 
     private fun checkBinary() {
@@ -78,7 +88,7 @@ class ConfigurationFragment : Fragment() {
 
     private fun setButtonsListeners() {
         integerBtn.setOnClickListener { setNumberType(NumberType.INTEGER) }
-        doubleBtn.setOnClickListener { setNumberType(NumberType.DOUBLE) }
+        doubleBtn.setOnClickListener { setNumberType(NumberType.DECIMAL) }
         binaryBtn.setOnClickListener { setNumberType(NumberType.BINARY) }
     }
 
@@ -86,12 +96,26 @@ class ConfigurationFragment : Fragment() {
         this.type = type
         listener?.onTypeSelected(this.type)
 
-        // Binary type of number does not need boundaries
+        updateUI()
+        configureInputs()
+    }
+
+    private fun updateUI() {
         if (type == NumberType.BINARY) {
+            // Binary type of number does not need boundaries, hide boundaries config view
             hideBoundariesConfig()
         } else {
             showBoundariesConfig()
         }
+    }
+
+    private fun configureInputs() {
+        var inputType = InputType.TYPE_CLASS_NUMBER
+        if (type == NumberType.DECIMAL) {
+            inputType = inputType or InputType.TYPE_NUMBER_FLAG_DECIMAL
+        }
+        lowerBoundEdit.inputType = inputType
+        upperBoundEdit.inputType = inputType
     }
 
 

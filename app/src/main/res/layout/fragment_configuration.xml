@@ -1,138 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/colorFragmentBg">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/ConfigLayout">
-
-        <RadioGroup
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:padding="12dp"
-            android:background="@drawable/stroke_config_group">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                style="@style/ConfigGroupTitleTxt"
-                android:text="@string/label_number_type_title"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/colorIcon"/>
-
-            <RadioButton
-                android:id="@+id/integerBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/InnerConfigTxt"
-                android:text="@string/label_integer" />
-
-            <RadioButton
-                android:id="@+id/doubleBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/InnerConfigTxt"
-                android:text="@string/label_float" />
-
-            <RadioButton
-                android:id="@+id/binaryBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/InnerConfigTxt"
-                android:text="@string/label_binary"/>
-        </RadioGroup>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/boundariesConfig"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/ConfigLayout">
+        android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="12dp"
-            android:background="@drawable/stroke_config_group">
+            style="@style/ConfigLayout">
 
-            <TextView
-                android:layout_width="match_parent"
+            <RadioGroup
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                style="@style/ConfigGroupTitleTxt"
-                android:text="@string/label_boundaries_title"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/colorIcon"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp">
+                android:padding="12dp"
+                android:background="@drawable/stroke_config_group">
 
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    style="@style/InnerConfigTxt"
-                    android:gravity="center_horizontal"
-                    android:text="@string/label_lower_bound"/>
+                    android:layout_marginBottom="8dp"
+                    style="@style/ConfigGroupTitleTxt"
+                    android:text="@string/label_number_type_title"/>
 
-                <TextView
-                    android:layout_width="0dp"
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorIcon"/>
+
+                <RadioButton
+                    android:id="@+id/integerBtn"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     style="@style/InnerConfigTxt"
-                    android:gravity="center_horizontal"
-                    android:text="@string/label_upper_bound"/>
-            </LinearLayout>
+                    android:text="@string/label_integer" />
+
+                <RadioButton
+                    android:id="@+id/doubleBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/InnerConfigTxt"
+                    android:text="@string/label_decimal" />
+
+                <RadioButton
+                    android:id="@+id/binaryBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/InnerConfigTxt"
+                    android:text="@string/label_binary"/>
+            </RadioGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/boundariesConfig"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/ConfigLayout">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical"
+                android:padding="12dp"
+                android:background="@drawable/stroke_config_group">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    style="@style/ConfigGroupTitleTxt"
+                    android:text="@string/label_boundaries_title"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorIcon"/>
 
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp">
 
-                    <EditText
-                        android:id="@+id/lowerBoundEdit"
-                        android:layout_width="80dp"
+                    <TextView
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:textSize="18sp" />
+                        android:layout_weight="1"
+                        style="@style/InnerConfigTxt"
+                        android:gravity="center_horizontal"
+                        android:text="@string/label_lower_bound"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        style="@style/InnerConfigTxt"
+                        android:gravity="center_horizontal"
+                        android:text="@string/label_upper_bound"/>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center">
+                    android:orientation="horizontal">
 
-                    <EditText
-                        android:id="@+id/upperBoundEdit"
-                        android:layout_width="80dp"
+                    <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:textSize="18sp" />
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <EditText
+                            android:id="@+id/lowerBoundEdit"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <EditText
+                            android:id="@+id/upperBoundEdit"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textSize="18sp" />
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+
+</ScrollView>

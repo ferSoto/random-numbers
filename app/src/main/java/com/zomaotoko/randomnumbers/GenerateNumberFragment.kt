@@ -28,7 +28,7 @@ class GenerateNumberFragment : Fragment() {
     fun setNumberType(type: NumberType) {
         generator = when(type) {
             NumberType.INTEGER -> IntGenerator(0, 100)
-            NumberType.DOUBLE -> DoubleGenerator(0.0, 100.0, 2)
+            NumberType.DECIMAL -> DecimalGenerator(0.0, 100.0, 2)
             else -> BinaryGenerator()
         }
     }
