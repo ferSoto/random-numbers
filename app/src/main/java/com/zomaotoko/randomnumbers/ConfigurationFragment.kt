@@ -106,6 +106,7 @@ class ConfigurationFragment : Fragment() {
     }
 
     private fun setEditTextListeners() {
+        // TODO("Validate boundaries")
         lowerBoundEdit.addTextChangedListener(TextWatcherImplementation { text ->
             if (text.isEmpty()) return@TextWatcherImplementation
             lowerBound = text.toFloat()

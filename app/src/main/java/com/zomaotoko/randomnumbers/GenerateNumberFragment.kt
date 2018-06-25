@@ -43,7 +43,7 @@ class GenerateNumberFragment : Fragment() {
         generator = when(type) {
             NumberType.INTEGER -> IntGenerator(lowerBound.toInt(), upperBound.toInt())
             NumberType.DECIMAL -> DecimalGenerator(lowerBound, upperBound, 2)
-            else -> BinaryGenerator()
+            else -> IntGenerator(0, 1)
         }
     }
 
