@@ -39,7 +39,7 @@
                     android:text="@string/label_integer" />
 
                 <RadioButton
-                    android:id="@+id/doubleBtn"
+                    android:id="@+id/decimalBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/InnerConfigTxt"

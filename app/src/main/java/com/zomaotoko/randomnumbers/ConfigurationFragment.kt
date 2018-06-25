@@ -9,6 +9,7 @@ import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import com.zomaotoko.randomnumbers.generators.NumberType
 import kotlinx.android.synthetic.main.fragment_configuration.*
 
@@ -62,6 +63,7 @@ class ConfigurationFragment : Fragment() {
             NumberType.DECIMAL -> checkDouble()
             NumberType.BINARY -> checkBinary()
         }
+        setCurrentBounds()
         setButtonsListeners()
     }
 
@@ -79,7 +81,7 @@ class ConfigurationFragment : Fragment() {
     }
 
     private fun checkDouble() {
-        doubleBtn.isChecked = true
+        decimalBtn.isChecked = true
         configureInputs()
     }
 
@@ -88,9 +90,14 @@ class ConfigurationFragment : Fragment() {
         boundariesConfig.visibility = View.GONE
     }
 
+    private fun setCurrentBounds() {
+        lowerBoundEdit.setText(lowerBound.toString(), TextView.BufferType.EDITABLE)
+        upperBoundEdit.setText(upperBound.toString(), TextView.BufferType.EDITABLE)
+    }
+
     private fun setButtonsListeners() {
         integerBtn.setOnClickListener { setNumberType(NumberType.INTEGER) }
-        doubleBtn.setOnClickListener { setNumberType(NumberType.DECIMAL) }
+        decimalBtn.setOnClickListener { setNumberType(NumberType.DECIMAL) }
         binaryBtn.setOnClickListener { setNumberType(NumberType.BINARY) }
     }
 

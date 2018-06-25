@@ -59,7 +59,7 @@ class MainActivity : FragmentActivity(), ConfigurationFragment.TypeSelector, Men
         with(getSharedPreferences(PREFERENCES_KEY, 0)) {
             numberType = NumberType.fromValue(getInt(NUMBER_TYPE, DEFAULT_NUMBER_TYPE))
             lowerBound = getFloat(LOWER_BOUND, DEFAULT_LOWER_BOUND)
-
+            upperBound = getFloat(UPPER_BOUND, DEFAULT_UPPER_BOUND)
         }
         generatorFragment.setNumberType(numberType)
     }
