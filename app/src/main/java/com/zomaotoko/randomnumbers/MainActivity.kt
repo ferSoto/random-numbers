@@ -14,15 +14,23 @@ import com.zomaotoko.randomnumbers.generators.NumberType
 
 
 class MainActivity : FragmentActivity(), ConfigurationFragment.TypeSelector, MenuAdapter.MenuListener {
-    private lateinit var numberType: NumberType
-    private lateinit var generatorFragment: GenerateNumberFragment
-
     companion object {
+        private const val CONFIGURATION_TAG = "configuration_fragment"
+
         private const val PREFERENCES_KEY = "preferences"
         private const val NUMBER_TYPE = "number_type"
+        private const val LOWER_BOUND = "lower_bound"
+        private const val UPPER_BOUND = "upper_bound"
 
-        private const val CONFIGURATION_TAG = "configuration_fragment"
+        private const val DEFAULT_NUMBER_TYPE = 0
+        private const val DEFAULT_LOWER_BOUND = 0f
+        private const val DEFAULT_UPPER_BOUND = 100f
     }
+
+    private lateinit var numberType: NumberType
+    private var lowerBound: Float = 0f
+    private var upperBound: Float = 0f
+    private lateinit var generatorFragment: GenerateNumberFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,13 +57,15 @@ class MainActivity : FragmentActivity(), ConfigurationFragment.TypeSelector, Men
     private fun loadConfiguration() {
         // Get saved configuration. Default -> INTEGER
         with(getSharedPreferences(PREFERENCES_KEY, 0)) {
-            numberType = NumberType.fromValue(getInt(NUMBER_TYPE, 0))
+            numberType = NumberType.fromValue(getInt(NUMBER_TYPE, DEFAULT_NUMBER_TYPE))
+            lowerBound = getFloat(LOWER_BOUND, DEFAULT_LOWER_BOUND)
+
         }
         generatorFragment.setNumberType(numberType)
     }
 
     private fun showConfigurationFragment() {
-        val fragment = ConfigurationFragment.getInstance(numberType)
+        val fragment = ConfigurationFragment.getInstance(numberType, lowerBound, upperBound)
         fragment.listener = this
         addFragmentAnimated(fragment, CONFIGURATION_TAG)
         onCloseDrawer(null)

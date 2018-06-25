@@ -26,23 +26,25 @@ class ConfigurationFragment : Fragment() {
         private const val ANIMATION_DURATION = 240L
         private const val OUT_OF_SCREEN_POSITION = 1280F
 
-        fun getInstance(type: NumberType) = ConfigurationFragment().apply {
+        fun getInstance(type: NumberType, lowerBound: Float, upperBound: Float) = ConfigurationFragment().apply {
             arguments = Bundle().apply {
                 putSerializable(TYPE_KEY, type)
+                putFloat(LOWER_BOUND_KEY, lowerBound)
+                putFloat(UPPER_BOUND_KEY, upperBound)
             }
         }
     }
 
     private lateinit var type: NumberType
-    private var lowerBound: Double = 0.0
-    private var upperBound: Double = 100.0
+    private var lowerBound: Float = 0f
+    private var upperBound: Float = 0f
     var listener: TypeSelector? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         type = arguments[TYPE_KEY] as NumberType
-        lowerBound = arguments.getDouble(LOWER_BOUND_KEY, lowerBound)
-        upperBound = arguments.getDouble(UPPER_BOUND_KEY, upperBound)
+        lowerBound = arguments.getFloat(LOWER_BOUND_KEY, lowerBound)
+        upperBound = arguments.getFloat(UPPER_BOUND_KEY, upperBound)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
