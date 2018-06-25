@@ -5,7 +5,9 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.text.Editable
 import android.text.InputType
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,8 +17,9 @@ import kotlinx.android.synthetic.main.fragment_configuration.*
 
 
 class ConfigurationFragment : Fragment() {
-    interface TypeSelector {
+    interface ConfigurationSelector {
         fun onTypeSelected(type: NumberType)
+        fun onBoundariesSelected(lowerBound: Float, upperBound: Float)
     }
 
     companion object {
@@ -39,7 +42,7 @@ class ConfigurationFragment : Fragment() {
     private lateinit var type: NumberType
     private var lowerBound: Float = 0f
     private var upperBound: Float = 0f
-    var listener: TypeSelector? = null
+    var listener: ConfigurationSelector? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,6 +68,7 @@ class ConfigurationFragment : Fragment() {
         }
         setCurrentBounds()
         setButtonsListeners()
+        setEditTextListeners()
     }
 
     override fun onDetach() {
@@ -101,6 +105,20 @@ class ConfigurationFragment : Fragment() {
         binaryBtn.setOnClickListener { setNumberType(NumberType.BINARY) }
     }
 
+    private fun setEditTextListeners() {
+        lowerBoundEdit.addTextChangedListener(TextWatcherImplementation { text ->
+            if (text.isEmpty()) return@TextWatcherImplementation
+            lowerBound = text.toFloat()
+            listener?.onBoundariesSelected(lowerBound, upperBound)
+        })
+
+        upperBoundEdit.addTextChangedListener(TextWatcherImplementation { text ->
+            if (text.isEmpty()) return@TextWatcherImplementation
+            upperBound = text.toFloat()
+            listener?.onBoundariesSelected(lowerBound, upperBound)
+        })
+    }
+
     private fun setNumberType(type: NumberType) {
         this.type = type
         listener?.onTypeSelected(this.type)
@@ -121,6 +139,7 @@ class ConfigurationFragment : Fragment() {
     private fun configureInputs() {
         var inputType = InputType.TYPE_CLASS_NUMBER
         if (type == NumberType.DECIMAL) {
+            // Allow to use decimal point
             inputType = inputType or InputType.TYPE_NUMBER_FLAG_DECIMAL
         }
         lowerBoundEdit.inputType = inputType
@@ -159,5 +178,23 @@ class ConfigurationFragment : Fragment() {
                         after()
                     }
                 }).start()
+    }
+
+
+    // Helper inner class
+
+    private class TextWatcherImplementation(private val completion: (String) -> Unit) : TextWatcher {
+        override fun afterTextChanged(p0: Editable?) {
+            if (p0 != null) {
+                completion(p0.toString())
+            }
+        }
+
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+        }
+
+        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+        }
+
     }
 }

@@ -13,7 +13,7 @@ import com.zomaotoko.randomnumbers.drawermenu.MenuAdapter
 import com.zomaotoko.randomnumbers.generators.NumberType
 
 
-class MainActivity : FragmentActivity(), ConfigurationFragment.TypeSelector, MenuAdapter.MenuListener {
+class MainActivity : FragmentActivity(), ConfigurationFragment.ConfigurationSelector, MenuAdapter.MenuListener {
     companion object {
         private const val CONFIGURATION_TAG = "configuration_fragment"
 
@@ -39,7 +39,7 @@ class MainActivity : FragmentActivity(), ConfigurationFragment.TypeSelector, Men
         loadConfiguration()
 
         // Menu layout must be 48 dp smaller than screen width
-        setMenuLayoutWidth(screenWidthInDp - dpToPx(48F))
+        menuLayoutWidth = screenWidthInDp - dpToPx(48F)
     }
 
     override fun onBackPressed() {
@@ -62,6 +62,7 @@ class MainActivity : FragmentActivity(), ConfigurationFragment.TypeSelector, Men
             upperBound = getFloat(UPPER_BOUND, DEFAULT_UPPER_BOUND)
         }
         generatorFragment.setNumberType(numberType)
+        generatorFragment.setBoundaries(lowerBound, upperBound)
     }
 
     private fun showConfigurationFragment() {
@@ -96,6 +97,17 @@ class MainActivity : FragmentActivity(), ConfigurationFragment.TypeSelector, Men
         generatorFragment.setNumberType(numberType)
     }
 
+    override fun onBoundariesSelected(lowerBound: Float, upperBound: Float) {
+        this.lowerBound = lowerBound
+        this.upperBound = upperBound
+        with(getSharedPreferences(PREFERENCES_KEY, 0).edit()) {
+            putFloat(LOWER_BOUND, lowerBound)
+            putFloat(UPPER_BOUND, upperBound)
+            apply()
+        }
+        generatorFragment.setBoundaries(lowerBound, upperBound)
+    }
+
 
     //
 
@@ -127,9 +139,11 @@ class MainActivity : FragmentActivity(), ConfigurationFragment.TypeSelector, Men
 
     // Screen
 
-    private fun setMenuLayoutWidth(width: Int) {
-        menuLayout.layoutParams.width = width
-    }
+    private var menuLayoutWidth
+        get() = menuLayout.layoutParams.width
+        set(width) {
+            menuLayout.layoutParams.width = width
+        }
 
     private val screenWidthInDp : Int
         get () {

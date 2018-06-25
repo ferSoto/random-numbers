@@ -12,6 +12,9 @@ import kotlinx.android.synthetic.main.fragment_generate_number.*
 
 class GenerateNumberFragment : Fragment() {
     private lateinit var generator: Generator
+    private lateinit var type: NumberType
+    private var lowerBound: Float = 0f
+    private var upperBound: Float = 0f
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater?.inflate(R.layout.fragment_generate_number, container, false)
@@ -26,9 +29,20 @@ class GenerateNumberFragment : Fragment() {
     }
 
     fun setNumberType(type: NumberType) {
+        this.type = type
+        refreshGenerator()
+    }
+
+    fun setBoundaries(lowerBound: Float, upperBound: Float) {
+        this.lowerBound = lowerBound
+        this.upperBound = upperBound
+        refreshGenerator()
+    }
+
+    private fun refreshGenerator() {
         generator = when(type) {
-            NumberType.INTEGER -> IntGenerator(0, 100)
-            NumberType.DECIMAL -> DecimalGenerator(0f, 100f, 2)
+            NumberType.INTEGER -> IntGenerator(lowerBound.toInt(), upperBound.toInt())
+            NumberType.DECIMAL -> DecimalGenerator(lowerBound, upperBound, 2)
             else -> BinaryGenerator()
         }
     }
