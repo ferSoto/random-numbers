@@ -8,13 +8,16 @@ import android.support.v4.app.Fragment
 import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.SeekBar
 import android.widget.TextView
 import com.zomaotoko.randomnumbers.generators.NumberType
 import kotlinx.android.synthetic.main.fragment_configuration.*
+import kotlin.math.floor
 
 
 class ConfigurationFragment : Fragment() {
@@ -69,7 +72,7 @@ class ConfigurationFragment : Fragment() {
         configureBounds()
         configureButtonsListeners()
         configureEditTextListeners()
-        configureSpinner()
+        configureSeekBar()
     }
 
     override fun onDetach() {
@@ -121,10 +124,28 @@ class ConfigurationFragment : Fragment() {
         })
     }
 
-    private fun configureSpinner() {
-        digitsSpinner.adapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, (1..5).map { ::toString }).apply {
-            setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item)
-        }
+    private fun configureSeekBar() {
+        seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            var lastValue: Int = 0
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+
+            }
+
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+                seekBar.progress = fixedPosition
+            }
+
+            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+                lastValue = p1
+                digitsTxt.text = "$fixedValue"
+            }
+
+            private val fixedPosition: Int
+                get() = fixedValue * 20
+
+            private val fixedValue: Int
+                get() = floor((lastValue / 20f)).toInt()
+        })
     }
 
     private fun setNumberType(type: NumberType) {
