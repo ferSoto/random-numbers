@@ -11,6 +11,8 @@
     <string name="label_lower_bound">Lower bound</string>
     <string name="label_upper_bound">Upper bound</string>
 
+    <string name="label_digits_title">Digits</string>
+
     <string-array name="menu_labels">
         <item>Home</item>
         <item>Number configuration</item>

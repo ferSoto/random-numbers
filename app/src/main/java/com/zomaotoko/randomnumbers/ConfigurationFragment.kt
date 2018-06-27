@@ -11,6 +11,7 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.zomaotoko.randomnumbers.generators.NumberType
 import kotlinx.android.synthetic.main.fragment_configuration.*
@@ -53,8 +54,7 @@ class ConfigurationFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater?.inflate(R.layout.fragment_configuration, container, false)?.apply {
-            setOnClickListener {
-                // Intercept taps
+            setOnClickListener { // Intercept taps
             }
         }
     }
@@ -66,9 +66,10 @@ class ConfigurationFragment : Fragment() {
             NumberType.DECIMAL -> checkDouble()
             NumberType.BINARY -> checkBinary()
         }
-        setCurrentBounds()
-        setButtonsListeners()
-        setEditTextListeners()
+        configureBounds()
+        configureButtonsListeners()
+        configureEditTextListeners()
+        configureSpinner()
     }
 
     override fun onDetach() {
@@ -94,18 +95,18 @@ class ConfigurationFragment : Fragment() {
         boundariesConfig.visibility = View.GONE
     }
 
-    private fun setCurrentBounds() {
+    private fun configureBounds() {
         lowerBoundEdit.setText(lowerBound.toString(), TextView.BufferType.EDITABLE)
         upperBoundEdit.setText(upperBound.toString(), TextView.BufferType.EDITABLE)
     }
 
-    private fun setButtonsListeners() {
+    private fun configureButtonsListeners() {
         integerBtn.setOnClickListener { setNumberType(NumberType.INTEGER) }
         decimalBtn.setOnClickListener { setNumberType(NumberType.DECIMAL) }
         binaryBtn.setOnClickListener { setNumberType(NumberType.BINARY) }
     }
 
-    private fun setEditTextListeners() {
+    private fun configureEditTextListeners() {
         // TODO("Validate boundaries")
         lowerBoundEdit.addTextChangedListener(TextWatcherImplementation { text ->
             if (text.isEmpty()) return@TextWatcherImplementation
@@ -118,6 +119,12 @@ class ConfigurationFragment : Fragment() {
             upperBound = text.toFloat()
             listener?.onBoundariesSelected(lowerBound, upperBound)
         })
+    }
+
+    private fun configureSpinner() {
+        digitsSpinner.adapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, (1..5).map { ::toString }).apply {
+            setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item)
+        }
     }
 
     private fun setNumberType(type: NumberType) {

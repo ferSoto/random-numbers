@@ -9,46 +9,29 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             style="@style/ConfigLayout">
 
             <RadioGroup
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:padding="12dp"
-                android:background="@drawable/stroke_config_group">
+                style="@style/RectConfigLayout">
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
                     style="@style/ConfigGroupTitleTxt"
                     android:text="@string/label_number_type_title"/>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/colorIcon"/>
+                <View style="@style/ConfigDivider" />
 
                 <RadioButton
                     android:id="@+id/integerBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     style="@style/InnerConfigTxt"
                     android:text="@string/label_integer" />
 
                 <RadioButton
                     android:id="@+id/decimalBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     style="@style/InnerConfigTxt"
                     android:text="@string/label_decimal" />
 
                 <RadioButton
                     android:id="@+id/binaryBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     style="@style/InnerConfigTxt"
                     android:text="@string/label_binary"/>
             </RadioGroup>
@@ -56,28 +39,17 @@
 
         <LinearLayout
             android:id="@+id/boundariesConfig"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             style="@style/ConfigLayout">
 
             <LinearLayout
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="12dp"
-                android:background="@drawable/stroke_config_group">
+                style="@style/RectConfigLayout">
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
                     style="@style/ConfigGroupTitleTxt"
                     android:text="@string/label_boundaries_title"/>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/colorIcon"/>
+                <View style="@style/ConfigDivider"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -138,6 +110,29 @@
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/digitsConfigLayout"
+            android:orientation="vertical"
+            style="@style/ConfigLayout">
+
+            <LinearLayout
+                style="@style/RectConfigLayout"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/ConfigGroupTitleTxt"
+                    android:text="@string/label_digits_title"/>
+
+                <View style="@style/ConfigDivider"/>
+
+                <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/digitsSpinner"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_gravity="center" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
 </ScrollView>
