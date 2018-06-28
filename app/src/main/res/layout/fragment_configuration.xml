@@ -113,7 +113,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/digitsConfigLayout"
+            android:id="@+id/digitsConfig"
             android:orientation="vertical"
             style="@style/ConfigLayout">
 

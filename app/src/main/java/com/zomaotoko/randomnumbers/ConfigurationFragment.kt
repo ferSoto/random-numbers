@@ -164,11 +164,19 @@ class ConfigurationFragment : Fragment() {
     }
 
     private fun updateUI() {
-        if (type == NumberType.BINARY) {
-            // Binary type of number does not need boundaries, hide boundaries config view
-            hideBoundariesConfig()
-        } else {
-            showBoundariesConfig()
+        when(type) {
+            NumberType.INTEGER -> {
+                showBoundariesConfig()
+                hideDigitsConfig()
+            }
+            NumberType.DECIMAL -> {
+                showBoundariesConfig()
+                showDigitsConfig()
+            }
+            else -> {
+                hideBoundariesConfig()
+                hideDigitsConfig()
+            }
         }
     }
 
@@ -201,6 +209,23 @@ class ConfigurationFragment : Fragment() {
         // Show boundaries configuration's layout sliding out to left
         slide(boundariesConfig, 0f, -OUT_OF_SCREEN_POSITION) {
             boundariesConfig.visibility = View.GONE
+        }
+    }
+
+    private fun showDigitsConfig() {
+        if (digitsConfig.visibility == View.VISIBLE) return
+
+        digitsConfig.visibility = View.VISIBLE
+        slide(digitsConfig, OUT_OF_SCREEN_POSITION, 0f) {
+            digitsConfig.visibility = View.VISIBLE
+        }
+    }
+
+    private fun hideDigitsConfig() {
+        if (digitsConfig.visibility == View.GONE) return
+
+        slide(digitsConfig, 0f, -OUT_OF_SCREEN_POSITION) {
+            digitsConfig.visibility = View.GONE
         }
     }
 
