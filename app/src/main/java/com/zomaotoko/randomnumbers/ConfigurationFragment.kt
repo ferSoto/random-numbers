@@ -22,21 +22,24 @@ class ConfigurationFragment : Fragment() {
     interface ConfigurationSelector {
         fun onTypeSelected(type: NumberType)
         fun onBoundariesSelected(lowerBound: Float, upperBound: Float)
+        fun onDigitsSelected(digits: Int)
     }
 
     companion object {
         private const val TYPE_KEY = "number_type"
         private const val LOWER_BOUND_KEY = "lower_bound"
         private const val UPPER_BOUND_KEY = "upper_bound"
+        private const val DIGITS_KEY = "digits"
 
         private const val ANIMATION_DURATION = 240L
         private const val OUT_OF_SCREEN_POSITION = 1280F
 
-        fun getInstance(type: NumberType, lowerBound: Float, upperBound: Float) = ConfigurationFragment().apply {
+        fun getInstance(type: NumberType, lowerBound: Float, upperBound: Float, digits: Int) = ConfigurationFragment().apply {
             arguments = Bundle().apply {
                 putSerializable(TYPE_KEY, type)
                 putFloat(LOWER_BOUND_KEY, lowerBound)
                 putFloat(UPPER_BOUND_KEY, upperBound)
+                putInt(DIGITS_KEY, digits)
             }
         }
     }
@@ -44,6 +47,7 @@ class ConfigurationFragment : Fragment() {
     private lateinit var type: NumberType
     private var lowerBound: Float = 0f
     private var upperBound: Float = 0f
+    private var digits: Int = 1
     var listener: ConfigurationSelector? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,6 +55,7 @@ class ConfigurationFragment : Fragment() {
         type = arguments[TYPE_KEY] as NumberType
         lowerBound = arguments.getFloat(LOWER_BOUND_KEY, lowerBound)
         upperBound = arguments.getFloat(UPPER_BOUND_KEY, upperBound)
+        digits = arguments.getInt(DIGITS_KEY, digits)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -123,14 +128,18 @@ class ConfigurationFragment : Fragment() {
     }
 
     private fun configureSeekBar() {
+        seekBar.progress = (digits - 1) * 25
+        digitsTxt.setText("$digits", TextView.BufferType.EDITABLE)
+
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            var lastValue: Int = 0
+            var lastValue = digits
 
             override fun onStartTrackingTouch(p0: SeekBar?) {
             }
 
             override fun onStopTrackingTouch(p0: SeekBar?) {
                 seekBar.progress = fixedPosition
+                listener?.onDigitsSelected(fixedValue)
             }
 
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {

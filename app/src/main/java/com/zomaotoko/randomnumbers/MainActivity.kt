@@ -21,6 +21,7 @@ class MainActivity : FragmentActivity(), ConfigurationFragment.ConfigurationSele
         private const val NUMBER_TYPE = "number_type"
         private const val LOWER_BOUND = "lower_bound"
         private const val UPPER_BOUND = "upper_bound"
+        private const val DIGITS = "digits"
 
         private const val DEFAULT_NUMBER_TYPE = 0
         private const val DEFAULT_LOWER_BOUND = 0f
@@ -30,6 +31,7 @@ class MainActivity : FragmentActivity(), ConfigurationFragment.ConfigurationSele
     private lateinit var numberType: NumberType
     private var lowerBound: Float = 0f
     private var upperBound: Float = 0f
+    private var digits: Int = 1
     private lateinit var generatorFragment: GenerateNumberFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,10 +65,11 @@ class MainActivity : FragmentActivity(), ConfigurationFragment.ConfigurationSele
         }
         generatorFragment.setNumberType(numberType)
         generatorFragment.setBoundaries(lowerBound, upperBound)
+        generatorFragment.setDigits(digits)
     }
 
     private fun showConfigurationFragment() {
-        val fragment = ConfigurationFragment.getInstance(numberType, lowerBound, upperBound)
+        val fragment = ConfigurationFragment.getInstance(numberType, lowerBound, upperBound, digits)
         fragment.listener = this
         addFragmentAnimated(fragment, CONFIGURATION_TAG)
         onCloseDrawer(null)
@@ -106,6 +109,15 @@ class MainActivity : FragmentActivity(), ConfigurationFragment.ConfigurationSele
             apply()
         }
         generatorFragment.setBoundaries(lowerBound, upperBound)
+    }
+
+    override fun onDigitsSelected(digits: Int) {
+        this.digits = digits
+        with(getSharedPreferences(PREFERENCES_KEY, 0).edit()) {
+            putInt(DIGITS, digits)
+            apply()
+        }
+        generatorFragment.setDigits(digits)
     }
 
 

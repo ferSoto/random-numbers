@@ -15,6 +15,7 @@ class GenerateNumberFragment : Fragment() {
     private lateinit var type: NumberType
     private var lowerBound: Float = 0f
     private var upperBound: Float = 0f
+    private var digits: Int = 0
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater?.inflate(R.layout.fragment_generate_number, container, false)
@@ -39,10 +40,15 @@ class GenerateNumberFragment : Fragment() {
         refreshGenerator()
     }
 
+    fun setDigits(digits: Int) {
+        this.digits = digits
+        refreshGenerator()
+    }
+
     private fun refreshGenerator() {
         generator = when(type) {
             NumberType.INTEGER -> IntGenerator(lowerBound.toInt(), upperBound.toInt())
-            NumberType.DECIMAL -> DecimalGenerator(lowerBound, upperBound, 2)
+            NumberType.DECIMAL -> DecimalGenerator(lowerBound, upperBound, digits)
             else -> IntGenerator(0, 1)
         }
     }

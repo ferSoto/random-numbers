@@ -64,7 +64,7 @@
     <!-- SeekBar -->
     <style name="SeekBarStyle" parent="Widget.AppCompat.SeekBar">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">10dp</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:colorAccent">#8EDE21</item>
         <item name="android:elevation">2dp</item>
     </style>
