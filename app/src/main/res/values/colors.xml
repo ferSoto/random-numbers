@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#FFFFFF</color>
+    <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#8EDE21</color>
 
     <color name="colorTitleBar">#FFFFFF</color>
@@ -10,4 +10,6 @@
 
     <color name="colorIcon">#868686</color>
     <color name="colorRadioGroupTitle">#565656</color>
+
+    <color name="colorButtonPressed">#EDEDED</color>
 </resources>

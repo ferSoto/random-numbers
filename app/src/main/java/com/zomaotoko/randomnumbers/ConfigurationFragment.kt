@@ -215,6 +215,7 @@ class ConfigurationFragment : Fragment() {
     private fun showDigitsConfig() {
         if (digitsConfig.visibility == View.VISIBLE) return
 
+        // Show digits configuration's layout sliding in from right
         digitsConfig.visibility = View.VISIBLE
         slide(digitsConfig, OUT_OF_SCREEN_POSITION, 0f) {
             digitsConfig.visibility = View.VISIBLE
@@ -224,6 +225,7 @@ class ConfigurationFragment : Fragment() {
     private fun hideDigitsConfig() {
         if (digitsConfig.visibility == View.GONE) return
 
+        // Hide digits configuration's layout sliding out to left
         slide(digitsConfig, 0f, -OUT_OF_SCREEN_POSITION) {
             digitsConfig.visibility = View.GONE
         }
