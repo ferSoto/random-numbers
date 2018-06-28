@@ -89,16 +89,19 @@ class ConfigurationFragment : Fragment() {
     private fun checkInteger() {
         integerBtn.isChecked = true
         configureInputs()
+        digitsConfig.visibility = View.GONE
     }
 
     private fun checkDecimal() {
         decimalBtn.isChecked = true
         configureInputs()
+        digitsConfig.visibility = View.VISIBLE
     }
 
     private fun checkBinary() {
         binaryBtn.isChecked = true
         boundariesConfig.visibility = View.GONE
+        digitsConfig.visibility = View.GONE
     }
 
     private fun configureBounds() {
