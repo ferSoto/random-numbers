@@ -13,7 +13,12 @@
 !.vscode/launch.json
 !.vscode/extensions.json
 
-# Netbeans
+# VS Code Android
+.project
+app/.classpath
+app/.project
+
+# Eclipse
 .metadata
 bin/
 tmp/
