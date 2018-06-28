@@ -8,11 +8,9 @@ import android.support.v4.app.Fragment
 import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.SeekBar
 import android.widget.TextView
 import com.zomaotoko.randomnumbers.generators.NumberType
@@ -66,7 +64,7 @@ class ConfigurationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         when(type) {
             NumberType.INTEGER -> checkInteger()
-            NumberType.DECIMAL -> checkDouble()
+            NumberType.DECIMAL -> checkDecimal()
             NumberType.BINARY -> checkBinary()
         }
         configureBounds()
@@ -88,7 +86,7 @@ class ConfigurationFragment : Fragment() {
         configureInputs()
     }
 
-    private fun checkDouble() {
+    private fun checkDecimal() {
         decimalBtn.isChecked = true
         configureInputs()
     }
@@ -127,8 +125,8 @@ class ConfigurationFragment : Fragment() {
     private fun configureSeekBar() {
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             var lastValue: Int = 0
-            override fun onStartTrackingTouch(p0: SeekBar?) {
 
+            override fun onStartTrackingTouch(p0: SeekBar?) {
             }
 
             override fun onStopTrackingTouch(p0: SeekBar?) {
@@ -137,14 +135,14 @@ class ConfigurationFragment : Fragment() {
 
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
                 lastValue = p1
-                digitsTxt.text = "$fixedValue"
+                digitsTxt.setText("$fixedValue", TextView.BufferType.EDITABLE)
             }
 
             private val fixedPosition: Int
-                get() = fixedValue * 20
+                get() = (fixedValue - 1) * 25
 
             private val fixedValue: Int
-                get() = floor((lastValue / 20f)).toInt()
+                get() = 1 + floor((lastValue / 25f)).toInt()
         })
     }
 
