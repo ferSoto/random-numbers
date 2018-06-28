@@ -26,6 +26,7 @@ class MainActivity : FragmentActivity(), ConfigurationFragment.ConfigurationSele
         private const val DEFAULT_NUMBER_TYPE = 0
         private const val DEFAULT_LOWER_BOUND = 0f
         private const val DEFAULT_UPPER_BOUND = 100f
+        private const val DEFAULT_DIGITS = 1
     }
 
     private lateinit var numberType: NumberType
@@ -62,6 +63,7 @@ class MainActivity : FragmentActivity(), ConfigurationFragment.ConfigurationSele
             numberType = NumberType.fromValue(getInt(NUMBER_TYPE, DEFAULT_NUMBER_TYPE))
             lowerBound = getFloat(LOWER_BOUND, DEFAULT_LOWER_BOUND)
             upperBound = getFloat(UPPER_BOUND, DEFAULT_UPPER_BOUND)
+            digits = getInt(DIGITS, DEFAULT_DIGITS)
         }
         generatorFragment.setNumberType(numberType)
         generatorFragment.setBoundaries(lowerBound, upperBound)
