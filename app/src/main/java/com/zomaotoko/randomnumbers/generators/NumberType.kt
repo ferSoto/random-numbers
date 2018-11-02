@@ -8,7 +8,6 @@ enum class NumberType {
             INTEGER -> 0
             DECIMAL -> 1
             BINARY -> 2
-            else -> -1
         }
 
     companion object {
@@ -16,7 +15,7 @@ enum class NumberType {
             0 -> INTEGER
             1 -> DECIMAL
             2 -> BINARY
-            else -> throw Exception()
+            else -> throw NoSuchNumberTypeException()
         }
     }
 }
