@@ -1,4 +1,4 @@
-package com.zomaotoko.randomnumbers.drawermenu
+package com.zomaotoko.randomnumbers.ui.menu
 
 import android.content.Context
 import android.graphics.drawable.Drawable

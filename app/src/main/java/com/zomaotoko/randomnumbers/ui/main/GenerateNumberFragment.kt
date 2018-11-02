@@ -1,4 +1,4 @@
-package com.zomaotoko.randomnumbers
+package com.zomaotoko.randomnumbers.ui.main
 
 
 import android.app.Fragment
@@ -6,7 +6,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.zomaotoko.randomnumbers.generators.*
+import com.zomaotoko.randomnumbers.R
+import com.zomaotoko.randomnumbers.data.generators.*
 import kotlinx.android.synthetic.main.fragment_generate_number.*
 
 

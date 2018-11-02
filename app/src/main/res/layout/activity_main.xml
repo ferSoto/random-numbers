@@ -4,7 +4,7 @@
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.zomaotoko.randomnumbers.MainActivity">
+    tools:context=".ui.main.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -53,7 +53,7 @@
 
                 <fragment
                     android:id="@+id/fragment_generate_number"
-                    class="com.zomaotoko.randomnumbers.GenerateNumberFragment"
+                    class="com.zomaotoko.randomnumbers.ui.main.GenerateNumberFragment"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
             </FrameLayout>
@@ -69,7 +69,7 @@
         android:orientation="vertical">
         <fragment
             android:id="@+id/_fragment_drawer_menu"
-            class="com.zomaotoko.randomnumbers.drawermenu.MenuFragment"
+            class="com.zomaotoko.randomnumbers.ui.menu.MenuFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             />

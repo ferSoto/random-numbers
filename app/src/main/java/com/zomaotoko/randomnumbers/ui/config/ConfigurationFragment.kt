@@ -1,4 +1,4 @@
-package com.zomaotoko.randomnumbers
+package com.zomaotoko.randomnumbers.ui.config
 
 
 import android.animation.Animator
@@ -13,7 +13,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
 import android.widget.TextView
-import com.zomaotoko.randomnumbers.generators.NumberType
+import com.zomaotoko.randomnumbers.R
+import com.zomaotoko.randomnumbers.data.generators.NumberType
 import kotlinx.android.synthetic.main.fragment_configuration.*
 import kotlin.math.floor
 

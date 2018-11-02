@@ -1,4 +1,4 @@
-package com.zomaotoko.randomnumbers.generators
+package com.zomaotoko.randomnumbers.data.generators
 
 enum class NumberType {
     INTEGER, DECIMAL, BINARY;

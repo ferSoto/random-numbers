@@ -1,15 +1,17 @@
-package com.zomaotoko.randomnumbers
+package com.zomaotoko.randomnumbers.ui.main
 
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
 import android.util.DisplayMetrics
+import com.zomaotoko.randomnumbers.R
 import kotlinx.android.synthetic.main.activity_main.*
 
-import com.zomaotoko.randomnumbers.Utils.Companion.dpToPx
-import com.zomaotoko.randomnumbers.drawermenu.MenuAdapter
-import com.zomaotoko.randomnumbers.generators.NumberType
+import com.zomaotoko.randomnumbers.utils.Utils.Companion.dpToPx
+import com.zomaotoko.randomnumbers.ui.menu.MenuAdapter
+import com.zomaotoko.randomnumbers.data.generators.NumberType
+import com.zomaotoko.randomnumbers.ui.config.ConfigurationFragment
 
 
 class MainActivity : FragmentActivity(), ConfigurationFragment.ConfigurationSelector, MenuAdapter.MenuListener {
