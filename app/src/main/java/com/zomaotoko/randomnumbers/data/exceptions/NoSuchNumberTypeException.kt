@@ -1,4 +1,4 @@
-package com.zomaotoko.randomnumbers.data.generators
+package com.zomaotoko.randomnumbers.data.exceptions
 
 class NoSuchNumberTypeException() : Exception() {
     companion object {

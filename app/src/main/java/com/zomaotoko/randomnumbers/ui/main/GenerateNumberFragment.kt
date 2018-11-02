@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.zomaotoko.randomnumbers.R
+import com.zomaotoko.randomnumbers.data.enums.NumberType
 import com.zomaotoko.randomnumbers.data.generators.*
 import kotlinx.android.synthetic.main.fragment_generate_number.*
 

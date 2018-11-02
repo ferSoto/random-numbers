@@ -14,7 +14,7 @@ import android.view.ViewGroup
 import android.widget.SeekBar
 import android.widget.TextView
 import com.zomaotoko.randomnumbers.R
-import com.zomaotoko.randomnumbers.data.generators.NumberType
+import com.zomaotoko.randomnumbers.data.enums.NumberType
 import kotlinx.android.synthetic.main.fragment_configuration.*
 import kotlin.math.floor
 

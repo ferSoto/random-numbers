@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 import com.zomaotoko.randomnumbers.utils.Utils.Companion.dpToPx
 import com.zomaotoko.randomnumbers.ui.menu.MenuAdapter
-import com.zomaotoko.randomnumbers.data.generators.NumberType
+import com.zomaotoko.randomnumbers.data.enums.NumberType
 import com.zomaotoko.randomnumbers.ui.config.ConfigurationFragment
 
 

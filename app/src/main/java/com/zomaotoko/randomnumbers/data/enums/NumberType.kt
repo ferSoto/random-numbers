@@ -1,4 +1,6 @@
-package com.zomaotoko.randomnumbers.data.generators
+package com.zomaotoko.randomnumbers.data.enums
+
+import com.zomaotoko.randomnumbers.data.exceptions.NoSuchNumberTypeException
 
 enum class NumberType {
     INTEGER, DECIMAL, BINARY;
