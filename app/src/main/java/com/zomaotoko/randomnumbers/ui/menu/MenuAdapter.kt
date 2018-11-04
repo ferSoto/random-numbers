@@ -4,14 +4,7 @@ import android.support.v4.app.FragmentActivity
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 
-
 class MenuAdapter(private val context: FragmentActivity, optionsListRes: Int, iconsListRes: Int) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    class ViewHolder(var view: MenuItem) : RecyclerView.ViewHolder(view)
-    interface MenuListener {
-        fun onHomeClick()
-        fun onConfigurationClick()
-    }
-
     private val labelList = context.resources.getStringArray(optionsListRes)
     private val iconList = context.resources.obtainTypedArray(iconsListRes)
 
@@ -36,5 +29,12 @@ class MenuAdapter(private val context: FragmentActivity, optionsListRes: Int, ic
                 1 -> view.setOnClickListener { context.onConfigurationClick() }
             }
         }
+    }
+
+    class ViewHolder(var view: MenuItem) : RecyclerView.ViewHolder(view)
+
+    interface MenuListener {
+        fun onHomeClick()
+        fun onConfigurationClick()
     }
 }

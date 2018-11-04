@@ -5,19 +5,6 @@ import android.content.SharedPreferences
 import com.zomaotoko.randomnumbers.data.enums.NumberType
 
 class GeneratorSettings(context: Context) : LocalStorage {
-    companion object {
-        private const val PREFERENCES_KEY = "preferences"
-        private const val NUMBER_TYPE = "number_type"
-        private const val LOWER_BOUND = "lower_bound"
-        private const val UPPER_BOUND = "upper_bound"
-        private const val DIGITS = "digits"
-
-        private const val DEFAULT_NUMBER_TYPE = 0
-        private const val DEFAULT_LOWER_BOUND = 0f
-        private const val DEFAULT_UPPER_BOUND = 100f
-        private const val DEFAULT_DIGITS = 1
-    }
-
     private val preferences: SharedPreferences
 
     init {
@@ -60,4 +47,16 @@ class GeneratorSettings(context: Context) : LocalStorage {
         }
     }
 
+    companion object {
+        private const val PREFERENCES_KEY = "preferences"
+        private const val NUMBER_TYPE = "number_type"
+        private const val LOWER_BOUND = "lower_bound"
+        private const val UPPER_BOUND = "upper_bound"
+        private const val DIGITS = "digits"
+
+        private const val DEFAULT_NUMBER_TYPE = 0
+        private const val DEFAULT_LOWER_BOUND = 0f
+        private const val DEFAULT_UPPER_BOUND = 100f
+        private const val DEFAULT_DIGITS = 1
+    }
 }

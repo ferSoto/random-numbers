@@ -1,6 +1,5 @@
 package com.zomaotoko.randomnumbers.ui.config
 
-
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.os.Bundle
@@ -18,33 +17,7 @@ import com.zomaotoko.randomnumbers.data.enums.NumberType
 import kotlinx.android.synthetic.main.fragment_configuration.*
 import kotlin.math.floor
 
-
 class ConfigurationFragment : Fragment() {
-    interface ConfigurationSelector {
-        fun onTypeSelected(type: NumberType)
-        fun onBoundariesSelected(lowerBound: Float, upperBound: Float)
-        fun onDigitsSelected(digits: Int)
-    }
-
-    companion object {
-        private const val TYPE_KEY = "number_type"
-        private const val LOWER_BOUND_KEY = "lower_bound"
-        private const val UPPER_BOUND_KEY = "upper_bound"
-        private const val DIGITS_KEY = "digits"
-
-        private const val ANIMATION_DURATION = 240L
-        private const val OUT_OF_SCREEN_POSITION = 1280F
-
-        fun getInstance(type: NumberType, lowerBound: Float, upperBound: Float, digits: Int) = ConfigurationFragment().apply {
-            arguments = Bundle().apply {
-                putSerializable(TYPE_KEY, type)
-                putFloat(LOWER_BOUND_KEY, lowerBound)
-                putFloat(UPPER_BOUND_KEY, upperBound)
-                putInt(DIGITS_KEY, digits)
-            }
-        }
-    }
-
     private lateinit var type: NumberType
     private var lowerBound: Float = 0f
     private var upperBound: Float = 0f
@@ -247,8 +220,24 @@ class ConfigurationFragment : Fragment() {
                 }).start()
     }
 
+    companion object {
+        private const val TYPE_KEY = "number_type"
+        private const val LOWER_BOUND_KEY = "lower_bound"
+        private const val UPPER_BOUND_KEY = "upper_bound"
+        private const val DIGITS_KEY = "digits"
 
-    // Helper inner class
+        private const val ANIMATION_DURATION = 240L
+        private const val OUT_OF_SCREEN_POSITION = 1280F
+
+        fun getInstance(type: NumberType, lowerBound: Float, upperBound: Float, digits: Int) = ConfigurationFragment().apply {
+            arguments = Bundle().apply {
+                putSerializable(TYPE_KEY, type)
+                putFloat(LOWER_BOUND_KEY, lowerBound)
+                putFloat(UPPER_BOUND_KEY, upperBound)
+                putInt(DIGITS_KEY, digits)
+            }
+        }
+    }
 
     private class TextWatcherImplementation(private val completion: (String) -> Unit) : TextWatcher {
         override fun afterTextChanged(p0: Editable?) {
@@ -262,6 +251,11 @@ class ConfigurationFragment : Fragment() {
 
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
         }
+    }
 
+    interface ConfigurationSelector {
+        fun onTypeSelected(type: NumberType)
+        fun onBoundariesSelected(lowerBound: Float, upperBound: Float)
+        fun onDigitsSelected(digits: Int)
     }
 }

@@ -1,9 +1,9 @@
 package com.zomaotoko.randomnumbers.ui.main
 
-
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
+import android.util.DisplayMetrics
 import com.zomaotoko.randomnumbers.R
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -11,17 +11,10 @@ import com.zomaotoko.randomnumbers.data.enums.NumberType
 import com.zomaotoko.randomnumbers.data.local.GeneratorSettings
 import com.zomaotoko.randomnumbers.data.local.LocalStorage
 import com.zomaotoko.randomnumbers.utils.Utils.Companion.dpToPx
-import com.zomaotoko.randomnumbers.utils.Utils.Companion.menuLayoutWidth
-import com.zomaotoko.randomnumbers.utils.Utils.Companion.screenWidthInDp
 import com.zomaotoko.randomnumbers.ui.menu.MenuAdapter
 import com.zomaotoko.randomnumbers.ui.config.ConfigurationFragment
 
-
 class MainActivity : FragmentActivity(), ConfigurationFragment.ConfigurationSelector, MenuAdapter.MenuListener {
-    companion object {
-        private const val CONFIGURATION_TAG = "configuration_fragment"
-    }
-
     private lateinit var localStorage: LocalStorage
     private lateinit var numberType: NumberType
     private var lowerBound: Float = 0f
@@ -34,9 +27,7 @@ class MainActivity : FragmentActivity(), ConfigurationFragment.ConfigurationSele
         setContentView(R.layout.activity_main)
         inflateLayout()
         loadConfiguration()
-
-        // Menu layout must be 48 dp smaller than screen width
-        menuLayoutWidth = screenWidthInDp - dpToPx(48F)
+        adjustMenuWidth()
     }
 
     override fun onBackPressed() {
@@ -46,12 +37,6 @@ class MainActivity : FragmentActivity(), ConfigurationFragment.ConfigurationSele
             super.onBackPressed()
         }
     }
-
-    private fun inflateLayout() {
-        generatorFragment = fragmentManager.findFragmentById(R.id.fragment_generate_number) as GenerateNumberFragment
-    }
-
-    // Listeners
 
     override fun onTypeSelected(type: NumberType) {
         if (numberType == type) return
@@ -76,9 +61,6 @@ class MainActivity : FragmentActivity(), ConfigurationFragment.ConfigurationSele
         localStorage.saveDigits(digits)
     }
 
-
-    //**
-
     override fun onHomeClick() {
         if (supportFragmentManager.backStackEntryCount > 0) {
             // Remove visible fragment if it's not the main fragment
@@ -93,8 +75,17 @@ class MainActivity : FragmentActivity(), ConfigurationFragment.ConfigurationSele
         }
     }
 
+    fun onTitleBarButtonClick() {
+        drawerLayout.openDrawer(menuLayout)
+    }
 
-    //**
+    fun onCloseDrawer() {
+        drawerLayout.closeDrawer(menuLayout)
+    }
+
+    private fun inflateLayout() {
+        generatorFragment = fragmentManager.findFragmentById(R.id.fragment_generate_number) as GenerateNumberFragment
+    }
 
     private fun loadConfiguration() {
         localStorage = GeneratorSettings(this).apply {
@@ -109,15 +100,30 @@ class MainActivity : FragmentActivity(), ConfigurationFragment.ConfigurationSele
         generatorFragment.setBoundaries(lowerBound, upperBound)
     }
 
+    private fun adjustMenuWidth() {
+        // Menu layout must be 48 dp smaller than screen width
+        menuLayoutWidth = screenWidthInDp - dpToPx(48F)
+    }
+
+    private var FragmentActivity.menuLayoutWidth
+        get() = menuLayout.layoutParams.width
+        set(width) {
+            menuLayout.layoutParams.width = width
+        }
+
+    private val FragmentActivity.screenWidthInDp : Int
+        get () {
+            val displayMetrics = DisplayMetrics()
+            windowManager.defaultDisplay.getMetrics(displayMetrics)
+            return displayMetrics.widthPixels
+        }
+
     private fun showConfigurationFragment() {
         val fragment = ConfigurationFragment.getInstance(numberType, lowerBound, upperBound, digits)
         fragment.listener = this
         addFragmentAnimated(fragment, CONFIGURATION_TAG)
         onCloseDrawer()
     }
-
-
-    // Fragments
 
     private fun addFragmentAnimated(fragment: Fragment, tag: String) {
         supportFragmentManager.beginTransaction()
@@ -128,14 +134,7 @@ class MainActivity : FragmentActivity(), ConfigurationFragment.ConfigurationSele
                 .commit()
     }
 
-
-    //
-
-    fun onTitleBarButtonClick() {
-        drawerLayout.openDrawer(menuLayout)
-    }
-
-    fun onCloseDrawer() {
-        drawerLayout.closeDrawer(menuLayout)
+    companion object {
+        private const val CONFIGURATION_TAG = "configuration_fragment"
     }
 }

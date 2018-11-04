@@ -1,6 +1,5 @@
 package com.zomaotoko.randomnumbers.ui.main
 
-
 import android.app.Fragment
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +9,6 @@ import com.zomaotoko.randomnumbers.R
 import com.zomaotoko.randomnumbers.data.enums.NumberType
 import com.zomaotoko.randomnumbers.data.generators.*
 import kotlinx.android.synthetic.main.fragment_generate_number.*
-
 
 class GenerateNumberFragment : Fragment() {
     private lateinit var generator: Generator
@@ -56,6 +54,7 @@ class GenerateNumberFragment : Fragment() {
     }
 
     private fun showNumber(text: String?) {
+        // TODO: Check if should I force the run on UI thread or it's just a brain fart.
         if (isAdded && text != null) activity.runOnUiThread { numberTxt.text = text }
     }
 }
