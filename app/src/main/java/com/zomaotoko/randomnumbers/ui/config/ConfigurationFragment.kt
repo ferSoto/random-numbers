@@ -208,7 +208,7 @@ class ConfigurationFragment : Fragment() {
         }
     }
 
-    private fun slide(view: View, from: Float, to: Float, after: (() -> Unit)) {
+    private fun slide(view: View, from: Float, to: Float, after: () -> Unit) {
         view.translationX = from
         view.animate()
                 .setDuration(ANIMATION_DURATION)
